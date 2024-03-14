@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center h-screen">
     <div class="w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4">Iniciar Sesión</h1>
+      <h1 class="text-2xl font-bold mb-4 text-center">Iniciar Sesión</h1>
       <form @submit.prevent="submitForm" class="space-y-4">
         <div>
           <label for="email" class="block">Correo Electrónico:</label>

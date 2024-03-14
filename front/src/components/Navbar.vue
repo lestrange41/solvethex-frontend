@@ -4,6 +4,7 @@
       <router-link to="/" class="text-white text-xl font-bold mx-4">Registrarse</router-link>
       <router-link to="/acceder" class="text-white text-xl font-bold mx-4">Acceder</router-link>
       <router-link to="/users" class="text-white text-xl font-bold mx-4">Usuarios</router-link>
+      <router-link to="/perfil" class="text-white text-xl font-bold mx-4">Perfil</router-link>
     </div>
   </nav>
 </template>
