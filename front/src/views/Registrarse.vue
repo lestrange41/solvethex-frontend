@@ -4,8 +4,8 @@
       <h1 class="text-2xl font-bold mb-4">Crear Nuevo Usuario</h1>
       <form @submit.prevent="submitForm" class="space-y-4">
         <div>
-          <label for="nombre" class="block">Nombre:</label>
-          <input type="text" v-model="nombre" id="nombre" placeholder="Ingrese su nombre" class="border border-gray-300 px-4 py-2 w-full rounded-md">
+          <label for="username" class="block">Nombre de usuario:</label>
+          <input type="text" v-model="username" id="username" placeholder="Ingrese su nombre de usuario" class="border border-gray-300 px-4 py-2 w-full rounded-md">
         </div>
         <div>
           <label for="email" class="block">Correo Electrónico:</label>
@@ -23,17 +23,26 @@
 
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 
-const nombre = ref('');
+const username = ref('');
 const email = ref('');
 const password = ref('');
 
-const submitForm = () => {
-  console.log('Nombre:', nombre.value);
-  console.log('Email:', email.value);
-  console.log('Contraseña:', password.value);
+const submitForm = async () => {
+  try {
+    // Hacer la solicitud POST al backend para crear un nuevo usuario
+    const response = await axios.post<User>('http://localhost:3000/register', {
+      username: username.value,
+      email: email.value,
+      password: password.value
+    });
+    
+    // Manejar la respuesta del servidor
+    console.log('Respuesta del servidor:', response.data);
+  } catch (error) {
+    // Manejar errores
+    console.error('Error al crear usuario:', error);
+  }
 };
-
 </script>
-
-

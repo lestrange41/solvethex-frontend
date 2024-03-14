@@ -1,29 +1,32 @@
-// src/main.js
+
 import { createApp } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import App from './App.vue';
-import Home from './views/Registrarse.vue';
+import App from './App.vue'
+import Home from './views/Registrarse.vue'
 import SignUp from './views/Acceder.vue'
+import Usuarios from './views/Usuarios.vue'
 import './index.css'
+import axios from 'axios'
 
 
-// Definir las rutas
 const routes: RouteRecordRaw[] = [
     { path: '/', component: Home },
-    { path: '/acceder', component: SignUp }
+    { path: '/acceder', component: SignUp },
+    { path: '/users', component: Usuarios }
   ];
   
-  // Crear el enrutador
+
   const router = createRouter({
     history: createWebHistory(),
     routes
   });
   
-  // Crear la aplicación Vue
+
   const app = createApp(App);
   
-  // Usar el enrutador en la aplicación
+
   app.use(router);
   
-  // Montar la aplicación en el elemento con el id "app" en el HTML
+  app.config.globalProperties.$axios = axios;
+
   app.mount('#app');

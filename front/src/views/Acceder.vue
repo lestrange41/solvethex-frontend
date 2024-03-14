@@ -19,15 +19,25 @@
 
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios'; // Importa Axios
 
 const email = ref('');
 const password = ref('');
 
-const submitForm = () => {
-  console.log('Email:', email.value);
-  console.log('Contraseña:', password.value);
-  // Aquí puedes enviar los datos del formulario al servidor para iniciar sesión
+const submitForm = async () => {
+  try {
+    // Hacer la solicitud POST al backend para iniciar sesión
+    const response = await axios.post('http://localhost:3000/login', {
+      email: email.value,
+      password: password.value
+    });
+    
+    // Manejar la respuesta del servidor
+    console.log('Respuesta del servidor:', response.data);
+  } catch (error) {
+    // Manejar errores
+    console.error('Error al iniciar sesión:', error);
+  }
 };
-
 </script>
 
