@@ -5,18 +5,18 @@ import App from './App.vue'
 import Books from './views/Books.vue'
 import Acceder from './views/Acceder.vue'
 import Usuarios from './views/Usuarios.vue'
-import Perfil from './views/Perfil.vue'
+import Libros from './views/Libros.vue'
 import EditBook from './views/EditBook.vue'
 import './index.css'
 import axios from 'axios'
 
 
 const routes: RouteRecordRaw[] = [
-    { path: '/', component: Books },
-    { path: '/login', component: Acceder },
+    { path: '/añadirlibro', component: Books },
+    { path: '/', component: Acceder },
     { path: '/users', component: Usuarios },
     { path: '/edit/:bookIdToEdit', name: 'EditBook', component: EditBook },
-    { path: '/perfil', component: Perfil }
+    { path: '/libros', component: Libros }
   ];
   
 

@@ -53,16 +53,11 @@ const is_read = ref(false);
 const bookIdToEdit = ref(null);
 
 const loadBookToEdit = async (id) => {
-  
-   
   try {
-    
-    const response = await axios.get(
-      `http://localhost:3000/book/${id}`
-    );
-    console.log( `http://localhost:3000/book/${id}`)
+    const response = await axios.get(`http://localhost:3000/book/${id}`);
+    console.log(`http://localhost:3000/book/${id}`);
     const bookData = response.data;
-    console.log(response)
+    console.log(response);
     nombre.value = bookData[0].nombre;
     descripcion.value = bookData[0].descripcion;
     is_read.value = Boolean(bookData[0].is_read);
@@ -72,10 +67,18 @@ const loadBookToEdit = async (id) => {
 };
 
 const submitForm = async () => {
-
   try {
-    console.log( 'name',nombre.value,'descripcion',descripcion.value,'is_read',is_read.value)
-    console.log(`http://localhost:3000/book/${window.location.href.split("/").pop()}`);
+    console.log(
+      "name",
+      nombre.value,
+      "descripcion",
+      descripcion.value,
+      "is_read",
+      is_read.value
+    );
+    console.log(
+      `http://localhost:3000/book/${window.location.href.split("/").pop()}`
+    );
     const response = await axios.put(
       `http://localhost:3000/book/${window.location.href.split("/").pop()}`,
       {
@@ -85,8 +88,8 @@ const submitForm = async () => {
       }
     );
     console.log("Libro editado correctamente:", response.data);
-    // Limpiar los campos del formulario después de enviar con éxito
-    router.push('/perfil');
+
+    router.push("/libros");
     nombre.value = "";
     descripcion.value = "";
     is_read.value = false;
@@ -98,9 +101,8 @@ const submitForm = async () => {
 const router = useRouter();
 
 onMounted(() => {
-  // Obtener el parámetro bookIdToEdit de la URL
   const bookIdToEdit = window.location.href.split("/").pop();
-  // Cargar el libro a editar si bookIdToEdit tiene un valor
-    loadBookToEdit(bookIdToEdit);
+
+  loadBookToEdit(bookIdToEdit);
 });
 </script>

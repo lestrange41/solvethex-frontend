@@ -5,49 +5,66 @@
       <form @submit.prevent="submitForm" class="space-y-4">
         <div>
           <label for="nombre" class="block">Titulo:</label>
-          <input type="text" v-model="nombre" id="nombre" placeholder="Pon el titulo del libro" class="border border-gray-300 px-4 py-2 w-full rounded-md">
+          <input
+            type="text"
+            v-model="nombre"
+            id="nombre"
+            placeholder="Pon el titulo del libro"
+            class="border border-gray-300 px-4 py-2 w-full rounded-md"
+          />
         </div>
         <div>
           <label for="descripcion" class="block">Descripción:</label>
-          <textarea v-model="descripcion" id="descripcion" placeholder="Añade una descripción del libro" class="border border-gray-300 px-4 py-2 w-full rounded-md"></textarea>
+          <textarea
+            v-model="descripcion"
+            id="descripcion"
+            placeholder="Añade una descripción del libro"
+            class="border border-gray-300 px-4 py-2 w-full rounded-md"
+          ></textarea>
         </div>
-        <div>
-          <label for="is_read" class="block">Leído:</label>
-          <input type="checkbox" v-model="is_read" id="is_read" class="border border-gray-300 px-4 py-2 w-full rounded-md">
+        <div class="flex items-center">
+          <label for="is_read" class="text-gray-700">Leído</label>
+           <input
+            type="checkbox"
+            v-model="is_read"
+            id="is_read"
+            class="h-5 w-5 text-blue-500 rounded-md border-gray-300 mr-2"
+          />
         </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md text-center">Añadir libro</button>
+        <button
+          type="submit"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md text-center"
+        >
+          Añadir libro
+        </button>
       </form>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import axios from 'axios';
+import { ref } from "vue";
+import axios from "axios";
 
-const nombre = ref('');
-const descripcion = ref('');
-const is_read = ref(false); // Inicializar el valor de is_read como falso
+const nombre = ref("");
+const descripcion = ref("");
+const is_read = ref(false);
 
 const submitForm = async () => {
- try {
-    // Hacer la solicitud POST al backend para crear un nuevo libro
-    const response = await axios.post('http://localhost:3000/book', {
+  try {
+    const response = await axios.post("http://localhost:3000/book", {
       nombre: nombre.value,
       descripcion: descripcion.value,
-      is_read: is_read.value
+      is_read: is_read.value,
     });
-    
-    // Manejar la respuesta del servidor
-    console.log('Respuesta del servidor:', response.data);
-    
-    // Limpiar los campos del formulario después de enviar con éxito
-    nombre.value = '';
-    descripcion.value = '';
+
+    console.log("Respuesta del servidor:", response.data);
+
+    nombre.value = "";
+    descripcion.value = "";
     is_read.value = false;
   } catch (error) {
-    // Manejar errores
-    console.error('Error al crear libro:', error);
-  }
+    console.error("Error al crear libro:", error);
+  }
 };
 </script>
