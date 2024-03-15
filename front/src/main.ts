@@ -2,18 +2,20 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import App from './App.vue'
-import Registrarse from './views/Registrarse.vue'
-import SignUp from './views/Acceder.vue'
+import Books from './views/Books.vue'
+import Acceder from './views/Acceder.vue'
 import Usuarios from './views/Usuarios.vue'
 import Perfil from './views/Perfil.vue'
+import EditBook from './views/EditBook.vue'
 import './index.css'
 import axios from 'axios'
 
 
 const routes: RouteRecordRaw[] = [
-    { path: '/', component: Registrarse },
-    { path: '/acceder', component: SignUp },
+    { path: '/', component: Books },
+    { path: '/login', component: Acceder },
     { path: '/users', component: Usuarios },
+    { path: '/edit/:bookIdToEdit', name: 'EditBook', component: EditBook },
     { path: '/perfil', component: Perfil }
   ];
   
